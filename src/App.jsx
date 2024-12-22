@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './Pages/Home';
 import Auth from './Pages/Auth';
-import Board from './Pages/Board';
+
 const App = () => {
   return (
     <BrowserRouter>

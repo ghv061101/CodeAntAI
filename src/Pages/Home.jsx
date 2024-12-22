@@ -18,66 +18,71 @@ const Home = () => {
 
     return (
         <Layout>
-            <main className="p-2">
-                <section className="bg-white w-full rounded-xl border flex flex-col">
+            <main style={{ padding: "16px", width: "100%" }}>
+                <section style={{ backgroundColor: "white", width: "1150px", borderRadius: "12px", border: "1px solid #eaeaea", display: "flex", flexDirection: "column",height:'660px',top:"0px" }}>
                     {/* Header Section */}
-                    <header className="flex flex-col gap-4 border-b p-4">
-                        <div className="flex justify-between items-center flex-wrap gap-4">
+                    <header style={{ display: "flex", flexDirection: "column", gap: "16px", borderBottom: "1px solid #eaeaea", padding: "16px" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
                             <div>
-                                <h1 className="font-semibold text-xl">Repositories</h1>
-                                <p className="font-light text-sm">{DataMock.length} total repositories</p>
+                                <h1 style={{ fontWeight: "600", fontSize: "20px" }}>Repositories</h1>
+                                <p style={{ fontWeight: "300", fontSize: "14px" }}>{DataMock.length} total repositories</p>
                             </div>
-                            <div className="flex gap-2">
-                                <button className="flex text-xs items-center p-2 px-4 gap-2 rounded-md border">
-                                    <ArrowPathIcon className="w-4 h-4" height={20} width={20}/>
+                            <div style={{ display: "flex", gap: "8px" }}>
+                                <button style={{ display: "flex", fontSize: "12px", alignItems: "center", padding: "8px 16px", gap: "8px", borderRadius: "6px", border: "1px solid #eaeaea" }}>
+                                    <ArrowPathIcon style={{ width: "16px", height: "16px" }} />
                                     Refresh All
                                 </button>
-                                <button className="flex text-xs items-center p-2 px-4 gap-2 bg-blue-600 text-white rounded-md">
-                                    <PlusIcon className="w-4 h-4" height={20} width={20}/>
+                                <button style={{ display: "flex", fontSize: "12px", alignItems: "center", padding: "8px 16px", gap: "8px", backgroundColor: "#1D4ED8", color: "white", borderRadius: "6px" }}>
+                                    <PlusIcon style={{ width: "16px", height: "16px" }} />
                                     Add Repository
                                 </button>
                             </div>
                         </div>
                         {/* Search Bar */}
                         <div>
-                            <label
-                                htmlFor="inputSearch"
-                                className="border w-fit rounded-md flex gap-2 items-center px-2 py-2"
-                            >
-                                <MagnifyingGlassIcon className="w-4 h-4 stroke-2" height={24} width={24} />
+                            <label htmlFor="inputSearch" style={{ border: "1px solid #eaeaea", width: "fit-content", borderRadius: "6px", display: "flex", gap: "8px", alignItems: "center", padding: "8px" }}>
+                                <MagnifyingGlassIcon style={{ width: "16px", height: "16px", strokeWidth: "2" }} />
                                 <input
                                     id="inputSearch"
                                     placeholder="Search Repositories"
                                     onChange={handleFilter}
-                                    className="text-xs w-[200px] placeholder-gray-700 outline-none"
+                                    style={{ fontSize: "12px", width: "100%", maxWidth: "300px", outline: "none", color: "#4B5563", padding: "0" }}
                                 />
                             </label>
                         </div>
                     </header>
 
                     {/* Repository List Section */}
-                    <div className="flex flex-col w-full">
+                    <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
                         {filteredData.length > 0 ? (
                             filteredData.map((item, index) => (
                                 <article
                                     key={index}
-                                    className={`flex flex-col p-4 gap-3 hover:bg-gray-100 ${
-                                        index !== filteredData.length - 1 ? "border-b" : ""
-                                    }`}
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        padding: "16px",
+                                        gap: "12px",
+                                        backgroundColor: "#f9fafb",
+                                        borderBottom: index !== filteredData.length - 1 ? "1px solid #eaeaea" : "none",
+                                        width: "calc(100% - 32px)", // Increased card width
+                                        maxWidth: "1200px", // Adjust the max width as needed
+                                        margin: "0 auto", // Center the card horizontally
+                                    }}
                                 >
-                                    <div className="flex gap-2 items-center">
+                                    <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
                                         <span>{item.title}</span>
-                                        <span className="bg-blue-50 border border-blue-200 text-blue-700 text-xs px-2 rounded-full">
+                                        <span style={{ backgroundColor: "#DBEAFE", border: "1px solid #BFDBFE", color: "#1D4ED8", fontSize: "12px", padding: "4px 8px", borderRadius: "9999px" }}>
                                             {item.type}
                                         </span>
                                     </div>
-                                    <div className="flex gap-4 md:gap-8 text-sm font-light">
-                                        <span className="flex items-center gap-2">
+                                    <div style={{ display: "flex", gap: "16px", fontSize: "14px", fontWeight: "300" }}>
+                                        <span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                                             {item.language}
-                                            <span className="bg-blue-600 p-1 rounded-full"></span>
+                                            <span style={{ backgroundColor: "#1D4ED8", padding: "4px", borderRadius: "9999px" }}></span>
                                         </span>
-                                        <span className="flex items-center gap-2">
-                                            <CircleStackIcon className="w-4 h-4" height={24} width={24} />
+                                        <span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                                            <CircleStackIcon style={{ width: "16px", height: "16px" }} />
                                             {item.size}
                                         </span>
                                         <span>{item.updatedAt}</span>
@@ -85,7 +90,7 @@ const Home = () => {
                                 </article>
                             ))
                         ) : (
-                            <div className="flex flex-col border-b p-4 gap-3 text-gray-500 text-center">
+                            <div style={{ display: "flex", flexDirection: "column", borderBottom: "1px solid #eaeaea", padding: "16px", gap: "12px", color: "#6B7280", textAlign: "center" }}>
                                 Looks like there is no repository to show.
                             </div>
                         )}
