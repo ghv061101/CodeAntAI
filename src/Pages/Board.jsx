@@ -1,8 +1,12 @@
 import React from 'react'
-
+import Sd from '../components/Sd';
+import MainPage from '../components/MainPage';
 const Board = () => {
   return (
-    <div>Board</div>
+    <div>
+      <Sd />
+      <MainPage />
+    </div>
   )
 }
 

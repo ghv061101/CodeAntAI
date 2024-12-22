@@ -29,11 +29,11 @@ const Home = () => {
                             </div>
                             <div className="flex gap-2">
                                 <button className="flex text-xs items-center p-2 px-4 gap-2 rounded-md border">
-                                    <ArrowPathIcon className="w-4 h-4" />
+                                    <ArrowPathIcon className="w-4 h-4" height={20} width={20}/>
                                     Refresh All
                                 </button>
                                 <button className="flex text-xs items-center p-2 px-4 gap-2 bg-blue-600 text-white rounded-md">
-                                    <PlusIcon className="w-4 h-4" />
+                                    <PlusIcon className="w-4 h-4" height={20} width={20}/>
                                     Add Repository
                                 </button>
                             </div>
@@ -44,7 +44,7 @@ const Home = () => {
                                 htmlFor="inputSearch"
                                 className="border w-fit rounded-md flex gap-2 items-center px-2 py-2"
                             >
-                                <MagnifyingGlassIcon className="w-4 h-4 stroke-2" />
+                                <MagnifyingGlassIcon className="w-4 h-4 stroke-2" height={24} width={24} />
                                 <input
                                     id="inputSearch"
                                     placeholder="Search Repositories"
@@ -77,7 +77,7 @@ const Home = () => {
                                             <span className="bg-blue-600 p-1 rounded-full"></span>
                                         </span>
                                         <span className="flex items-center gap-2">
-                                            <CircleStackIcon className="w-4 h-4" />
+                                            <CircleStackIcon className="w-4 h-4" height={24} width={24} />
                                             {item.size}
                                         </span>
                                         <span>{item.updatedAt}</span>

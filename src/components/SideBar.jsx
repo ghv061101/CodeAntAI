@@ -1,130 +1,240 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import {
-    Bars4Icon,
-    ChevronDownIcon,
-    HomeIcon,
-    CodeBracketIcon,
-    CloudIcon,
-    BookOpenIcon,
-    Cog6ToothIcon,
-    PhoneIcon,
-    ArrowRightStartOnRectangleIcon
+  Bars4Icon,
+  ChevronDownIcon,
+  HomeIcon,
+  CodeBracketIcon,
+  CloudIcon,
+  BookOpenIcon,
+  Cog6ToothIcon,
+  PhoneIcon,
+  ArrowRightStartOnRectangleIcon
 } from "@heroicons/react/24/outline";
+import logo1 from "../assets/logo1.png"; // Ensure the path is correct
 
 const SideBar = () => {
-    const [isSideBarVisible, setIsSideBarVisible] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-    const isMobileRef = useRef(false);
+  const [isSideBarVisible, setIsSideBarVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const isMobileRef = useRef(false);
+  const navigate = useNavigate(); // Initialize the navigate hook
 
-    useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
-            const isMobileLocal = width < 768;
-            if (isMobileLocal) {
-                setIsMobile(true);
-                isMobileRef.current = true;
-            } else {
-                setIsMobile(false);
-                isMobileRef.current = false;
-            }
-        };
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const isMobileLocal = width < 768;
+      if (isMobileLocal) {
+        setIsMobile(true);
+        isMobileRef.current = true;
+      } else {
+        setIsMobile(false);
+        isMobileRef.current = false;
+      }
+    };
 
-        handleResize();
+    handleResize();
 
-        window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize);
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
-    return (
-        <div className="flex flex-col w-full md:w-64 bg-white md:h-screen border-r relative">
-            <div className={`flex justify-between md:justify-around w-full px-4 items-center`}>
-                <div className="flex items-center justify-center gap-4 h-16">
-                    <img src={'/svg/logo.svg'} alt={'logo'} className={`w-6`} />
-                    <h1 className="text-lg font-semibold">CodeAnt AI</h1>
-                </div>
+  const sidebarStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    backgroundColor: 'white',
+    height: '100%',
+    borderRight: '1px solid #ddd',
+    position: 'relative',
+  };
 
-                <div className={`flex md:hidden`}>
-                    <button onClick={() => { setIsSideBarVisible(prevState => !prevState) }}>
-                        <Bars4Icon className={`w-6 h-6`} />
-                    </button>
-                </div>
-            </div>
+  const headerStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '16px',
+  };
 
-            <div
-                className={`absolute md:static bottom-0 w-full h-screen md:h-full bg-black/10 translate-y-full md:translate-y-0 flex overflow-hidden transition-all `}
-                style={{
-                    height: isMobile ? (isSideBarVisible ? 'calc(100vh - 64px)' : '0px') : '100%',
-                }}
-            >
-                <div className={`bg-white w-full h-fit md:h-full flex flex-col`}>
-                    <div className="flex flex-col items-center py-4">
-                        <span className="mt-2 text-sm border p-2 rounded-xl flex gap-2 items-center">
-                            <span>UtkarshDhairyaPanwar...</span>
-                            <ChevronDownIcon className={`w-5 h-5`} />
-                        </span>
-                    </div>
+  const logoContainerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'absolute',
+  };
 
-                    <nav className="flex-1 px-4 py-2 space-y-2">
-                        <a
-                            href="#"
-                            className="flex items-center px-4 py-2 text-sm font-medium bg-[#1570EF] text-white rounded-lg"
-                        >
-                            <HomeIcon className={`w-6 h-6`} />
-                            <span className="ml-3 font-light">Repositories</span>
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
-                        >
-                            <CodeBracketIcon className={`w-6 h-6`} />
-                            <span className="ml-3 font-light">AI Code Review</span>
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
-                        >
-                            <CloudIcon className={`w-6 h-6`} />
-                            <span className="ml-3 font-light">Cloud Security</span>
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
-                        >
-                            <BookOpenIcon className={`w-6 h-6`} />
-                            <span className="ml-3 font-light">How to Use</span>
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
-                        >
-                            <Cog6ToothIcon className={`w-6 h-6`} />
-                            <span className="ml-3 font-light">Settings</span>
-                        </a>
-                    </nav>
+  const logoTextStyle = {
+    fontSize: '1.125rem',
+    marginLeft: '8px',
+  };
 
-                    <div className="px-4 py-4">
-                        <a
-                            href="#"
-                            className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
-                        >
-                            <PhoneIcon className={`w-5 h-5`} />
-                            <span className="ml-3 font-light">Support</span>
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
-                        >
-                            <ArrowRightStartOnRectangleIcon className={`w-5 h-5`} />
-                            <span className="ml-3">Logout</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+  const mobileToggleStyle = {
+    display: 'flex',
+  };
+
+  const sidebarContentStyle = {
+    position: 'absolute',
+    bottom: '0',
+    width: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    overflow: 'hidden',
+    transition: 'transform 0.3s ease-in-out',
+    height: isMobile ? (isSideBarVisible ? 'calc(100vh - 64px)' : '0px') : '100%',
+  };
+
+  const sidebarBodyStyle = {
+    backgroundColor: 'white',
+    display: 'flex',
+    flexDirection: 'column',
+    paddingTop: '16px',
+    height: '100%',
+  };
+
+  const userInfoStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '16px',
+  };
+
+  const userInfoTextStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '8px',
+    border: '1px solid #ddd',
+    borderRadius: '12px',
+    gap: '8px',
+  };
+
+  const navLinksStyle = {
+    flexGrow: '1',
+    padding: '0 16px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+  };
+
+  const navItemStyle = (isActive) => ({
+    display: 'flex',
+    alignItems: 'center',
+    padding: '8px',
+    fontSize: '0.875rem',
+    fontWeight: '500',
+    color: isActive ? 'white' : '#4a4a4a',
+    borderRadius: '8px',
+    textDecoration: 'none',
+    backgroundColor: isActive ? '#1570ef' : 'transparent',
+    transition: 'background-color 0.2s',
+  });
+
+  const footerLinksStyle = {
+    padding: '16px',
+  };
+
+  const footerItemStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '8px',
+    fontSize: '0.875rem',
+    color: '#4a4a4a',
+    borderRadius: '8px',
+    textDecoration: 'none',
+    transition: 'background-color 0.2s',
+  };
+
+  const handleLogout = () => {
+    // Trigger logout and navigate to the auth page
+    navigate('/'); 
+  };
+
+  return (
+    <div style={sidebarStyle}>
+      {/* Header */}
+      <div style={headerStyle}>
+        {/* Mobile Toggle */}
+        <div style={mobileToggleStyle}>
+          <button onClick={() => setIsSideBarVisible(prevState => !prevState)}>
+            <Bars4Icon style={{ width: '24px', height: '24px' }} />
+          </button>
         </div>
-    );
+      </div>
+
+      {/* Sidebar Content */}
+      <div style={sidebarContentStyle}>
+        <div style={sidebarBodyStyle}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div>
+              <img
+                src={logo1}
+                alt="Logo"
+                style={{
+                  width: '35.62px', // Decreased logo size
+                  height: '40px', // Decreased logo size
+                  marginBottom: '15px',
+                }}
+              />
+            </div>
+            <div>
+              <span
+                style={{
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  color: '#4B5563',
+                  lineHeight: '1.5',
+                  marginBottom: '10px',
+                }}
+              >
+                CodeAnt AI
+              </span>
+            </div>
+          </div>
+          {/* User Info */}
+          <div style={userInfoStyle}>
+            <span style={userInfoTextStyle}>
+              <span>UtkarshDhairyaPanwar...</span>
+              <ChevronDownIcon style={{ width: '20px', height: '20px'}} />
+            </span>
+          </div>
+
+          {/* Navigation Links */}
+          <nav style={navLinksStyle}>
+            <a href="#" style={navItemStyle(true)}>
+              <HomeIcon style={{ width: '24px', height: '24px', marginBottom: 'px' }} />
+              <span style={{ marginLeft: '12px' }}>Repositories</span>
+            </a>
+            <a href="#" style={navItemStyle(false)}>
+              <CodeBracketIcon style={{ width: '24px', height: '24px' }} />
+              <span style={{ marginLeft: '12px' }}>AI Code Review</span>
+            </a>
+            <a href="#" style={navItemStyle(false)}>
+              <CloudIcon style={{ width: '24px', height: '24px' }} />
+              <span style={{ marginLeft: '12px' }}>Cloud Security</span>
+            </a>
+            <a href="#" style={navItemStyle(false)}>
+              <BookOpenIcon style={{ width: '24px', height: '24px' }} />
+              <span style={{ marginLeft: '12px' }}>How to Use</span>
+            </a>
+            <a href="#" style={navItemStyle(false)}>
+              <Cog6ToothIcon style={{ width: '24px', height: '24px' }} />
+              <span style={{ marginLeft: '12px' }}>Settings</span>
+            </a>
+          </nav>
+
+          {/* Footer Links */}
+          <div style={footerLinksStyle}>
+            <a href="#" style={footerItemStyle}>
+              <PhoneIcon style={{ width: '24px', height: '24px' }} />
+              <span style={{ marginLeft: '12px' }}>Support</span>
+            </a>
+            <a href="" onClick={handleLogout} style={footerItemStyle}>
+              <ArrowRightStartOnRectangleIcon style={{ width: '24px', height: '24px' }} />
+              <span style={{ marginLeft: '12px' }}>Logout</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SideBar;

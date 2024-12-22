@@ -1,11 +1,16 @@
-import {PropsWithChildren} from 'react';
-import SideBar from './SideBar';
+import React from "react";
+import Sidebar from "../components/SideBar";
 
 const Layout = ({ children }) => {
     return (
-        <div className={`flex w-full h-full flex-col md:flex-row`}>
-            <SideBar />
-            <div className={`h-screen w-full box-border overflow-y-auto`}>
+        <div style={{display: 'flex'}}>
+            {/* Sidebar */}
+            <div style={{width:'15%',height:'100vh'}} >
+            <Sidebar />
+            </div>
+
+            {/* Main Content */}
+            <div style={{marginLeft:'2.5%'}}>
                 {children}
             </div>
         </div>
