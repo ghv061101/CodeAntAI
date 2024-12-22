@@ -65,7 +65,7 @@ function SignIn() {
 
     // Handle button click to redirect to the dashboard
     const handleRedirect = () => {
-        navigate('/dashboard'); // Redirect to the dashboard route using navigate
+        navigate('/board'); // Redirect to the dashboard route using navigate
     };
 
     return (
