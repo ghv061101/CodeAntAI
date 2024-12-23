@@ -9,7 +9,7 @@ import bit1 from '../assets/bit1.png';
 import azure from '../assets/azure.png';
 import gitlab from '../assets/gitlab.png';
 import sso from '../assets/sso.png';
-
+import './singin.css';
 // Stats data
 const stats = [
     { value: '30+', label: 'Language Support' },
@@ -35,8 +35,11 @@ const SignInButton = ({ onClick, text, image, customStyles }) => (
             width: '100%',
             backgroundColor: '#f4f5f5',
             transition: 'background-color 0.3s ease, box-shadow 0.3s ease', // Added transition
-            ...customStyles // Applying custom styles
+            ...customStyles ,
+           
+
         }}
+        className="signin-button-image"
         onMouseEnter={(e) => e.target.style.boxShadow = '0px 4px 8px rgba(0, 0, 0, 0.2)'} // Mouse hover effect
         onMouseLeave={(e) => e.target.style.boxShadow = 'none'} // Mouse leave effect
     >
@@ -69,7 +72,7 @@ function SignIn() {
     };
 
     return (
-        <div style={{ display: 'flex', height: '100vh' }}>
+        <div style={{ display: 'flex', height: '100vh' }} className="signin-container">
             {/* Left half for displaying cards */}
             <div
                 style={{
@@ -79,11 +82,11 @@ function SignIn() {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    padding: '20px',
+                    //padding: '20px',
                     maxWidth: '100%',
                     flexDirection: 'column', // Adjusting layout for smaller screens
                 }}
-                className="left-section"
+                className='signin-left-section'
             >
                 <div
                     style={{
@@ -91,6 +94,7 @@ function SignIn() {
                         height: '326.34px', // Fixed height of 326.34px
                         position: 'relative',
                     }}
+                    className="signin-cards"
                 >
                     {/* Card 1 */}
                     <div
@@ -108,6 +112,7 @@ function SignIn() {
                             left: '20px',
                             zIndex: 2,
                         }}
+                        className="signin-card-signin-card-main"
                     >
                         <div
                             style={{
@@ -116,11 +121,13 @@ function SignIn() {
                                 gap: '12px',
                                 marginBottom: '8px',
                             }}
+                            className="signin-card-header"
                         >
                             <img
                                 src={logo1}
                                 alt="Logo"
                                 style={{ width: '40px', height: '40px' }}
+                                className="signin-logo"
                             />
                             <span
                                 style={{
@@ -130,6 +137,7 @@ function SignIn() {
                                     lineHeight: '1.5',
                                     flex: 1,
                                 }}
+                                className="signin-title"
                             >
                                 AI to Detect & Autofix Bad Code
                             </span>
@@ -144,15 +152,17 @@ function SignIn() {
                                 gap: '15px',
                                 paddingTop: '15px',
                             }}
+                            className="signin-card-stats"
                         >
                             {stats.map((item, index) => (
-                                <div key={index}>
+                                <div key={index} className="signin-stat">
                                     <span
                                         style={{
                                             fontSize: '1.5rem',
                                             fontWeight: 'bold',
                                             display: 'block',
                                         }}
+                                        className="signin-stat-value"
                                     >
                                         {item.value}
                                     </span>
@@ -160,6 +170,7 @@ function SignIn() {
                                         style={{
                                             fontSize: '0.875rem',
                                         }}
+                                        className="signin-stat-label"
                                     >
                                         {item.label}
                                     </span>
@@ -184,6 +195,7 @@ function SignIn() {
                             padding: '1.5rem',
                             justifyContent: 'space-between',
                         }}
+                        className="signin-card signin-card-secondary"
                     >
                         <div
                             style={{
@@ -192,6 +204,7 @@ function SignIn() {
                                 alignItems: 'center',
                                 bottom: '10%',
                             }}
+                            className="signin-logos"
                         >
                             <img src={icm} alt="icm" />
                             <img src={group5} alt="" />
@@ -202,6 +215,7 @@ function SignIn() {
                                 flexDirection: 'column',
                                 gap: '0.2rem',
                             }}
+                            className="signin-secondary-text"
                         >
                             <span
                                 style={{
@@ -216,6 +230,7 @@ function SignIn() {
                                     fontSize: '17px',
                                     fontWeight: 'bold',
                                 }}
+                                className="signin-secondary-value"
                             >
                                 500K+
                             </span>
@@ -236,6 +251,7 @@ function SignIn() {
                         zIndex: 1,
                         opacity: 0.4,
                     }}
+                    className="signin-faded-logo"
                 />
             </div>
 
@@ -250,11 +266,13 @@ function SignIn() {
                     marginTop: '20%',
                     marginBottom: '20%',
                 }}
+                className="signin-right-section"
             >
                 {/* Card for Logo and Text */}
                 <div
                     style={{
-                        width: '80%',
+                        width: '672px',
+                        height: '276px',
                         padding: '20px',
                         borderRadius: '10px',
                         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
@@ -266,9 +284,13 @@ function SignIn() {
                         alignItems: 'center',
                         textAlign: 'center',
                     }}
+                    className="signin-header-card"
                 >
                     {/* Adjusted Logo Size */}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                        className="signin-header-logo"
+                    >
                         <div>
                             <img
                                 src={logo1}
@@ -278,6 +300,7 @@ function SignIn() {
                                     height: '40px', // Decreased logo size
                                     marginBottom: '15px',
                                 }}
+                                className="signin-header-logo-image"
                             />
                         </div>
                         <div>
@@ -289,12 +312,16 @@ function SignIn() {
                                     lineHeight: '1.5',
                                     marginBottom: '10px',
                                 }}
+                                className="signin-header-title"
                             >
                                 CodeAnt AI
                             </span>
                         </div>
                     </div>
-                    <h2 style={{ fontSize: '1.5rem', color: '#6B7280' }}>
+                    <h2
+                        style={{ fontSize: '1.5rem', color: '#6B7280' }}
+                        className="signin-welcome-text"
+                    >
                         Welcome to CodeAnt AI
                     </h2>
 
@@ -306,6 +333,7 @@ function SignIn() {
                             gap: '10px',
                             justifyContent: 'center',
                         }}
+                        className="signin-tabs"
                     >
                         <button
                             onClick={() => setActiveTab('saas')}
@@ -319,6 +347,7 @@ function SignIn() {
                                 width: '301px',
                                 height: '50px'
                             }}
+                            className='tab-button'
                         >
                             SaaS
                         </button>
@@ -334,6 +363,7 @@ function SignIn() {
                                 width: '301px',
                                 height: '50px'
                             }}
+                            className='tab-button2'
                         >
                             Self-Hosted
                         </button>
@@ -343,22 +373,23 @@ function SignIn() {
                 {/* Card for Sign-In Options */}
                 <div
                     style={{
-                        width: '590px',
+                        width: '672px',
                         height: '326.34px',
                         padding: '20px',
                         borderRadius: '10px',
                         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
                     }}
+                    className="signin-options-card"
                 >
                     {activeTab && (
-                        <div style={{ marginTop: '20px', textAlign: 'center', width: '590px', height: '200px' }}>
+                        <div style={{ marginTop: '20px', textAlign: 'center', width: '650px', height: '200px' }} className="signin-options">
                             {signInOptions[activeTab].map((option, index) => (
                                 <SignInButton key={index} text={option.text} image={option.image} customStyles={{ textAlign: 'center' }} onClick={handleRedirect} />
                             ))}
                         </div>
                     )}
                 </div>
-                <p style={{ textAlign: 'center' }}>
+                <p style={{ textAlign: 'center' }}className="signin-footer-text">
                     By signing up, you agree to the <a style={{ fontWeight: 'bold' }}>Privacy Policy</a>.
                 </p>
             </div>
@@ -366,4 +397,4 @@ function SignIn() {
     );
 }
 
-export default SignIn;
+export default SignIn; 
